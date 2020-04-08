@@ -4,8 +4,10 @@
 
 1. duckietown-Apriltags bindings  https://github.com/duckietown/dt-apriltags
 
-> I don't remember how I solved the  OSError....
+> I don't remember how I solved the  OSError.... I might did something like sudo make install after building this library...
+> 
 > OSError: /home/yanshimsi/.local/lib/python3.8/site-packages/dt_apriltags/libapriltag.so: cannot open shared object file: No such file or directory
+> 
 > My libapriltag.so is located in /usr/local/lib/
 
 2. Others:  `pip install opencv-python numpy pandas scipy matplotlib`  
