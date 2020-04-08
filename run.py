@@ -9,7 +9,7 @@ from vedio2trajact import *
 
 def getConfig():
     config = {
-        'dumpFrames2tmp': False,            ## If need video2frames
+        'dumpFrames2tmp': True,            ## If need video2frames
         'newDetect': True,                  ## frames2taginfo
         'loadInfoDictFromPickle': False,    ## dump frames2taginfo
         'dumpInfoDictPickle': True,         ## load frames2taginfo
