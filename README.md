@@ -4,11 +4,7 @@
 
 1. duckietown-Apriltags bindings  https://github.com/duckietown/dt-apriltags
 
-> I don't remember how I solved the  OSError.... I might did something like sudo make install after building this library...
-> 
-> OSError: /home/yanshimsi/.local/lib/python3.8/site-packages/dt_apriltags/libapriltag.so: cannot open shared object file: No such file or directory
-> 
-> My libapriltag.so is located in /usr/local/lib/
+
 
 2. Others:  `pip install opencv-python numpy pandas scipy matplotlib`  
 
@@ -17,3 +13,24 @@
 2. Detect tags in frames `getAprilTagsInfo()`. Modified from https://github.com/duckietown/dt-apriltags/blob/master/test/test.py
 3. Tidy the tag info (x, y, pose_t, etc.)
 4. Apply fix and transformations if needed
+
+## OSError? 
+
+If met with OSError as the following during funning, add a parameter "searchpath" in `Detector()` like this
+
+> OSError: /home/yanshimsi/.local/lib/python3.8/site-packages/dt_apriltags/libapriltag.so: cannot open shared object file: No such file or directory
+
+Try to find where your libapriltag.so is located first (Mine is in `/usr/local/lib` after doing `sudo make install`), and then use the Detector as
+
+```
+from dt_apriltags import Detector
+at_detector = Detector(searchpath=['/usr/local/lib'],
+                        families='tag36h11',
+                        nthreads=1,
+                        quad_decimate=1.0,
+                        quad_sigma=0.0,
+                        refine_edges=1,
+                        decode_sharpening=0.25,
+                        debug=0)
+```
+

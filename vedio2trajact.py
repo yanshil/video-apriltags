@@ -61,8 +61,7 @@ def getAprilTagsInfo(images_folder, camera_matrix, tag_size, debug_dir=None):
 
     msg = Sucess Detect: 302/678
     '''
-    print(os.environ)
-    at_detector = Detector(searchpath=['apriltags/lib', 'apriltags/lib64'],
+    at_detector = Detector(searchpath=['/usr/local/lib'],
                            families='tag36h11',
                            nthreads=1,
                            quad_decimate=1.0,
