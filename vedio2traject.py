@@ -1,49 +1,20 @@
 import cv2
 from cv2 import imshow
 from scipy.spatial.transform import Rotation
-
 import os
 import re
-from dt_apriltags import Detector
 import numpy as np
-
 import glob
 import matplotlib.pyplot as plt
-
 import pandas as pd
+
+from dt_apriltags import Detector
+from utils import *
 
 def transform(x, y, theta):
     X = x * np.cos(theta) + y * np.sin(theta)
     Y = - x * np.sin(theta) + y * np.cos(theta)
     return X, Y
-
-def createFolderIfNotExist(dir):
-    if dir and not os.path.isdir(dir):
-        os.mkdir(dir)
-    else: ## Already dumped?
-        return 
-
-def vedio2frames(vedioName, out_dir):
-    createFolderIfNotExist(out_dir)
-
-    vidcap = cv2.VideoCapture(vedioName)
-    success, image = vidcap.read()
-    count = 0
-    success = True
-    while success:
-        outfile = os.path.join(out_dir, "frame{:0>4d}.jpg".format(count))
-        cv2.imwrite(outfile, image)
-        success, image = vidcap.read()
-        # print 'Read a new frame: ', success
-        count += 1
-
-
-def get_valid_filename(s):
-    """
-    django
-    """
-    s = str(s).strip().replace(' ', '_')
-    return re.sub(r'(?u)[^-\w.]', '', s)
 
 
 def getAprilTagsInfo(images_folder, camera_matrix, tag_size, debug_dir=None):

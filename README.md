@@ -1,18 +1,30 @@
 # video-apriltags
 
-## Requirements
+## Camera Calibration
+Modify from https://github.com/opencv/opencv/blob/master/samples/python/calibrate.py
+
+```
+python CameraCalibration.py
+```
+
+
+
+
+## Apriltags Detection
+
+### Requirements
 
 1. duckietown-Apriltags bindings  https://github.com/duckietown/dt-apriltags
 
 2. Others:  `pip install opencv-python numpy pandas scipy matplotlib`  
 
-## Get Video Tags Trajectory Pipeline
+### Get Video Tags Trajectory Pipeline
 1. Dump video to frames `vedio2frames()`
 2. Detect tags in frames `getAprilTagsInfo()`. Modified from https://github.com/duckietown/dt-apriltags/blob/master/test/test.py
 3. Tidy the tag info (x, y, pose_t, etc.)
 4. Apply fix and transformations if needed
 
-## OSError? 
+### OSError? 
 
 If met with OSError as the following during funning, add a parameter "searchpath" in `Detector()` like this
 
