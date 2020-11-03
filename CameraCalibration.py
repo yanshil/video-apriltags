@@ -121,7 +121,7 @@ def run(img_names, square_size, pattern_size, debug_dir = None, threads_num = 4,
 
 
 if __name__ == '__main__':
-    GUI = True
+    GUI = False
     square_size = 0.02          ## Size of blocks in a chessboard
     pattern_size = (9,7)        ## Num of cross: (Row-1) * (Col-1) of the chessboad
 
