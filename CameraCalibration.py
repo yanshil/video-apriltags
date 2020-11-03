@@ -131,7 +131,7 @@ if __name__ == '__main__':
         filepath = select_file(title="Select the Checkboard Video")
         dir_name = select_directory(title="Select a Directory to Dump Frames")
     else: ## Directly assign path
-        filepath = "data/chessboard.mp4"
+        filepath = "data/90fov.mp4"
         dir_name = "output"
 
     vedio2frames(filepath, dir_name)

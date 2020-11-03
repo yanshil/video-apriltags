@@ -2,7 +2,7 @@ import os
 import numpy as np
 import glob
 import pickle
-from vedio2trajact import *
+from vedio2traject import *
 
 
 def getConfig():

@@ -15,7 +15,7 @@ python CameraCalibration.py
 ### Requirements
 
 1. duckietown-Apriltags bindings  https://github.com/duckietown/dt-apriltags
-
+   1. Actually doing `pip install dt_apriltags` is enough
 2. Others:  `pip install opencv-python numpy pandas scipy matplotlib`  
 
 ### Get Video Tags Trajectory Pipeline
