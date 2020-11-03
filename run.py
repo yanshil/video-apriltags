@@ -45,6 +45,9 @@ if __name__ == "__main__":
     print(vedio_list)
 
     for v in vedio_list:
+        if not os.path.isfile(v):
+            print("Check file {} locations. This file does not exists".format(v))
+            continue
         v_basename = os.path.basename(v)
         v_basename = v_basename.replace('.mp4', '')
         print("Working on " + v_basename + "......")
