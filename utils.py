@@ -43,9 +43,11 @@ def vedio2frames(vedioName, out_dir):
     createFolderIfNotExist(out_dir)
     
     vidcap = cv2.VideoCapture(vedioName)
-    success,image = vidcap.read()
+    success, image = vidcap.read()
     count = 0
-    success = True
+    # success = True
+    if not success:
+        print("Fail to read video")
     while success:
         outfile = os.path.join(out_dir, "frame{:0>4d}.jpg".format(count))
         cv2.imwrite(outfile, image)
