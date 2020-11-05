@@ -132,7 +132,7 @@ def applyTransformation(df):
         df.iloc[i, ]['angle'] = - (angle - r0)
     return df
 
-def visualize_df(df):
+def visualize_df(df, figpath):
     x = df['x'].to_numpy()
     y = df['y'].to_numpy()
     angle = df['angle'].to_numpy()
@@ -143,9 +143,12 @@ def visualize_df(df):
     # plt.plot(x[0], y[0], marker=(3, 0, angle[0]), markersize=20, linestyle='None')
     plt.axis('equal')
     plt.text(x[0], y[0], 'Starting Point', rotation=angle[0] * 180 / np.pi)
-    plt.show()
+    if figpath is None:
+        plt.show()
+    else:
+        plt.savefig(figpath)
 
-def dump2txt(tag_info_dict, filename, visualize=False):
+def dump2txt(tag_info_dict, filename, figpath=None):
     df = pd.DataFrame(index=list(tag_info_dict.keys()), columns=[
                       'x', 'y', 'angle'])
     for f, tags in tag_info_dict.items():
@@ -165,5 +168,5 @@ def dump2txt(tag_info_dict, filename, visualize=False):
     df['angle'] = df['angle'] * 180 / np.pi
     df.to_csv(filename, header=False, index=True, sep=' ', mode='w')
 
-    if visualize:
-        visualize_df(df)
+    ## Visualize trajectory
+    visualize_df(df, figpath)

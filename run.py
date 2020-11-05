@@ -12,7 +12,7 @@ def getConfig():
         'loadInfoDictFromPickle': False,    ## dump frames2taginfo
         'dumpInfoDictPickle': True,         ## load frames2taginfo
         'dumpTxt': True,                    ## dump (x, y, theta)
-        'drawVisualization': True           ## Draw the trajectory
+        'dumpVisualization': True           ## Draw the trajectory
     }
     return config
 
@@ -20,7 +20,7 @@ def getConfig():
 if __name__ == "__main__":
     config = getConfig()
     ## 90 FOV
-    vedio_CM = np.array([751.9567600229142, 0.0, 628.6409373456061, 0.0, 752.226819611761, 385.79653783468626, 0.0, 0.0, 1.0]).reshape((3, 3))
+    vedio_CM = np.array([726.3492948627853, 0.0, 654.1399771822613, 0.0, 716.894176922007, 371.83583359192164, 0.0, 0.0, 1.0]).reshape((3, 3))
 
     tag_size = 0.07
     tmp_outdir = './tmp/'
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     #vedio_list = [latest_file]
 
     ## Grab specify video in input folder
-    vedio_list = ['2020-02-14_16-24-05.mp4']
+    vedio_list = ['motion_01_1.mov']
 
 
     vedio_list = [os.path.join(input_dir, x) for x in vedio_list]
@@ -69,6 +69,11 @@ if __name__ == "__main__":
             with open(output_dir + v_basename + '_dict_info.pkl', 'rb') as f:
                 tag_info_dict = pickle.load(f)
 
+        if config['dumpVisualization']:
+            figpath = output_dir + v_basename + '.png'
+        else:
+            figpath = None
+
         if config['dumpTxt']:
             dump2txt(
-                tag_info_dict, output_dir + v_basename+'.txt', visualize=config['drawVisualization'])
+                tag_info_dict, output_dir + v_basename+'.txt', figpath)
