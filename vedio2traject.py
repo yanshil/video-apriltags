@@ -137,6 +137,7 @@ def visualize_df(df, figpath):
     y = df['y'].to_numpy()
     angle = df['angle'].to_numpy()
 
+    plt.cla()
     for i in range(x.shape[0]):
         plt.plot(x[i], y[i], marker=(3, 0, angle[i]),
                     markersize=10, linestyle='None')
