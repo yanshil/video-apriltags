@@ -138,10 +138,15 @@ def visualize_df(df, figpath):
     angle = df['angle'].to_numpy()
 
     plt.cla()
-    for i in range(x.shape[0]):
-        plt.plot(x[i], y[i], marker=(3, 0, angle[i]),
-                    markersize=10, linestyle='None')
-    # plt.plot(x[0], y[0], marker=(3, 0, angle[0]), markersize=20, linestyle='None')
+    
+    ## Triangle with angle
+    # for i in range(x.shape[0]):
+    #     plt.plot(x[i], y[i], marker=(3, 0, angle[i]),
+    #                 markersize=10, linestyle='None')
+
+    ## Pure Line
+    plt.plot(x, y, '--')
+
     plt.axis('equal')
     plt.text(x[0], y[0], 'Starting Point', rotation=angle[0] * 180 / np.pi)
     if figpath is None:
