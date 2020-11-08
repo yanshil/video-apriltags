@@ -7,7 +7,7 @@ from vedio2traject import *
 
 def getConfig():
     config = {
-        'dumpFrames2tmp': True,            ## If need video2frames
+        'dumpFrames2tmp': False,            ## If need video2frames
         'newDetect': True,                  ## frames2taginfo
         'loadInfoDictFromPickle': False,    ## dump frames2taginfo
         'dumpInfoDictPickle': True,         ## load frames2taginfo
@@ -20,7 +20,7 @@ def getConfig():
 if __name__ == "__main__":
     config = getConfig()
     ## 90 FOV
-    vedio_CM = np.array([726.3492948627853, 0.0, 654.1399771822613, 0.0, 716.894176922007, 371.83583359192164, 0.0, 0.0, 1.0]).reshape((3, 3))
+    vedio_CM = np.array([732.9546741360766, 0.0, 626.491008574248, 0.0, 728.6085953040948, 366.17003214171933, 0.0, 0.0, 1.0]).reshape((3, 3))
 
     tag_size = 0.07
     tmp_outdir = './tmp/'
@@ -31,17 +31,17 @@ if __name__ == "__main__":
     createFolderIfNotExist(output_dir)
 
     ## Grab all in input folder
-    # vedio_list = glob.glob(input_dir + '*.mp4')
+    vedio_list = glob.glob(input_dir + 'circle_02.mov')
+    vedio_list = sorted(vedio_list)
 
     ## Grab latest video in input folder
     #latest_file = max(list_of_files, key=os.path.getctime)
     #vedio_list = [latest_file]
 
     ## Grab specify video in input folder
-    vedio_list = ['motion_01_1.mov']
+    # vedio_list = ['motion_01_1.mov']
+    # vedio_list = [os.path.join(input_dir, x) for x in vedio_list]
 
-
-    vedio_list = [os.path.join(input_dir, x) for x in vedio_list]
     print(vedio_list)
 
     for v in vedio_list:

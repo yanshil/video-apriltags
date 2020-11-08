@@ -118,6 +118,8 @@ def applyTransformation(df):
     """
     Set frame 1 as reference frame (x, y, theta) = (0, 0, 0)
     """
+    df = df.dropna()
+
     x0 = df.iloc[0, ]['x']
     y0 = df.iloc[0, ]['y']
     r0 = df.iloc[0, ]['angle']
@@ -140,12 +142,16 @@ def visualize_df(df, figpath):
     plt.cla()
     
     ## Triangle with angle
-    # for i in range(x.shape[0]):
-    #     plt.plot(x[i], y[i], marker=(3, 0, angle[i]),
-    #                 markersize=10, linestyle='None')
+    for i in range(x.shape[0]):
+        # plt.plot(x[i], y[i], marker=(3, 0, angle[i]),
+        #             markersize=10, linestyle='None')
+        try:
+            plt.plot(x[i], y[i], 'r,')
+        except:
+            pass
 
     ## Pure Line
-    plt.plot(x, y, '--')
+    # plt.plot(x, y, 'bo')
 
     plt.axis('equal')
     plt.text(x[0], y[0], 'Starting Point', rotation=angle[0] * 180 / np.pi)
@@ -157,6 +163,7 @@ def visualize_df(df, figpath):
 def dump2txt(tag_info_dict, filename, figpath=None):
     df = pd.DataFrame(index=list(tag_info_dict.keys()), columns=[
                       'x', 'y', 'angle'])
+    
     for f, tags in tag_info_dict.items():
         if len(tags) > 0:
             tag = tags[0]
